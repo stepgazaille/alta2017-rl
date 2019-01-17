@@ -11,7 +11,7 @@ from rl import Environment, yield_candidate_text, rouge_engine
 
 VERBOSE = 1
 RESTORE = False
-CHECKPOINT_PATH = "reinforce.ckpt"
+CHECKPOINT_PATH = "./reinforce.ckpt"
 N_HIDDEN = 200
 SAVE_EPISODES = 200
 LOGFILE = "reinforce_log.csv"
