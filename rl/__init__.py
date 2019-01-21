@@ -67,10 +67,15 @@ class Environment:
         done = self.index >= len(self.candidates)
         if done:
             summary_text = ' '.join([self.candidates[s] for s in self.summary])
-            rouge_scores = [rouge_engine.get_scores(h, summary_text)[0] for h in self.ideal_summaries]
-            #print(rouge_scores)
-            rouge_l = max([r['rouge-l']['f'] for r in rouge_scores])
-            reward = rouge_l
+            if self.summary:
+                print("self.summary:", self.summary)
+                print("summary_text:", "#" + summary_text + "#")
+                rouge_scores = [rouge_engine.get_scores(h, summary_text)[0] for h in self.ideal_summaries]
+                #print(rouge_scores)
+                rouge_l = max([r['rouge-l']['f'] for r in rouge_scores])
+                reward = rouge_l
+            else:
+                reward = 0.0
 
         return {'done': done,
                 'reward': reward,

@@ -11,11 +11,11 @@ from rl import Environment, yield_candidate_text, rouge_engine
 
 VERBOSE = 1
 RESTORE = False
-CHECKPOINT_PATH = "./reinforce.ckpt"
+CHECKPOINT_PATH = "./checkpoints/reinforce.ckpt"
 N_HIDDEN = 200
 SAVE_EPISODES = 200
-LOGFILE = "reinforce_log.csv"
-EVALFILE = "reinforce_eval.csv"
+LOGFILE = "./logs/reinforce_log.csv"
+EVALFILE = "./logs/reinforce_eval.csv"
 NOISE = 0.2 # Noise added when computing the action for training
 
 def yieldRouge(CorpusFile):
