@@ -136,6 +136,17 @@ def train():
     train_indices = alldata[:split_boundary]
     test_indices = alldata[split_boundary:]
 
+
+    #print(env.data[0].keys())
+    #print("body:")
+    #print(env.data[0]['body'])
+    #print("ideal_answer:")
+    #print(env.data[0]['ideal_answer'])
+    #print("type:")
+    #print(env.data[0]['type'])
+    #for item in yield_candidate_text(env.data[0]):
+    #    print(item[2])
+
     # train tf.idf
     if VERBOSE > 0:
         print("Training tf.idf")
@@ -154,6 +165,7 @@ def train():
     tfidf = TfidfVectorizer(tokenizer=my_tokenize)
     tfidf.fit(tfidf_train_text)
     nnModel = NNModel(len(tfidf.get_feature_names()))
+
 
     if VERBOSE > 0:
         print("Training REINFORCE")

@@ -43,6 +43,8 @@ class Environment:
         self.qtype = self.data[qid]['type']
         self.question = self.data[qid]['body']
         self.candidates = [s[2] for s in yield_candidate_text(self.data[qid])]
+        while "." in self.candidates:
+            self.candidates.remove(".")  
         self.candidates = self.candidates[:30] # TODO: Remove the limit to first 30 candidates
         self.ideal_summaries = self.data[qid]['ideal_answer']
         if type(self.ideal_summaries) != list:
@@ -68,8 +70,11 @@ class Environment:
         if done:
             summary_text = ' '.join([self.candidates[s] for s in self.summary])
             if self.summary:
-                print("self.summary:", self.summary)
-                print("summary_text:", "#" + summary_text + "#")
+                #print("self.summary:", self.summary)
+                #print("summary_text:", "#" + summary_text + "#")
+                #print("candidates:")
+                for c in self.candidates:
+                    print(c)
                 rouge_scores = [rouge_engine.get_scores(h, summary_text)[0] for h in self.ideal_summaries]
                 #print(rouge_scores)
                 rouge_l = max([r['rouge-l']['f'] for r in rouge_scores])
